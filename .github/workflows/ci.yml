@@ -1,0 +1,43 @@
+#Nome della pipeline
+name: CI Pipieline
+
+#La pipeline si avvia ad ogni push su GitHub
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    #Eseguiamo su Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      #Step 1 Scarichiamo il codice dal repository
+      - name: Checkout codice
+        uses: actions/checkout@v3
+
+      #Step 2 Installiamo python
+      - name: Installa python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+
+      #Step 3 Installiamo le dipendenze
+      - name: Installa dipendenze
+        run: pip install -r requirements.txt
+
+      #Step 4 Analisi del condice con flask
+      - name: Flake8 - analisi stile
+        run: flake8 app.py
+
+      #Step 5 Analisi sicurezza con bandit
+      - name: Bandit - analisi sicurezza
+        run: bandir -r app.py
+
+      #Step 6 Eseguiamo i test con pytest e misuriamo la copertura
+      - name: Pytest - test e copertura
+        run: pytest tests/test.app.py -v --cov=app --cov-report=term-missing

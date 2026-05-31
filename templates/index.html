@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titolo della pagina -->
+    <title>Todo App</title>
+</head>
+<body>
+
+    <h1> La mia Todo list </h1>
+    <!-- Form per aggiungere un nuovo task -->
+    <form action="/add" method="post">
+        <input type="text" name="todo" placeholder="Scrivi una task...">
+        <button type="submit">"Aggiungi"</button>
+    </form>
+
+    <!-- Lista dei task -->
+    <ul>
+        {% for todo  in todos %}
+        <li>
+            {{ todo }}
+            <-- Link per eliminare il task -->
+            <a href="/delete/{{loop.index0}}">Elimina</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,16 @@
+#Definizione dei servizi
+services:
+
+  #Servizio principale: la nostra app Flask
+  web:
+    #Costruiamo l'immagine dal dockerfile nella cartella corrente
+    build: .
+    #Mappiamo la porta 5000 del container alla porta 5000 del pc
+    ports:
+      - "5000:5000"
+    #Montiamo la cartella corrente dentro il container
+    volumes:
+      - .:/app
+    #Variabili d'ambiente
+    environment:
+      - FLASK_ENV=development
