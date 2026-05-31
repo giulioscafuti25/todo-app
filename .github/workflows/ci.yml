@@ -40,4 +40,4 @@ jobs:
 
       #Step 6 Eseguiamo i test con pytest e misuriamo la copertura
       - name: Pytest - test e copertura
-        run: pytest tests/test.app.py -v --cov=app --cov-report=term-missing
+        run: pytest tests/test_app.py -v --cov=app --cov-report=term-missing
