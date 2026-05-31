@@ -1,5 +1,7 @@
 # Importiamo Flask e le funzioni necessarie
+import os
 from flask import Flask, render_template, request, redirect, url_for
+from pip._internal.commands import debug
 
 # Creiamo l'applicazione Flask
 app = Flask(__name__)
@@ -33,7 +35,10 @@ def delete(index):
         todos.pop(index)
     return redirect(url_for("index"))
 
+#Leggiamo la variabile d'ambiente FLASK_ENV per la modalità debug
+debug_mode = os.environ.get('FLASK_ENV') == 'development'
+
 
 # Avviamo il server sulla porta 5000
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000) #nosec B104 - binding intenzionale per Docker
