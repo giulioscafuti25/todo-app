@@ -41,5 +41,4 @@ debug_mode = os.environ.get('FLASK_ENV') == 'development'
 
 # Avviamo il server sulla porta 5000
 if __name__ == "__main__":
-    # nosec B104 - binding intenzionale per Docker
-    app.run(host="0.0.0.0", port=5000, debug=debug_mode)
+    app.run(host="0.0.0.0", port=5000, debug=debug_mode)  # nosec B104
