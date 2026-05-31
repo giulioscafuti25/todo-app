@@ -35,11 +35,11 @@ def delete(index):
     return redirect(url_for("index"))
 
 
-#Leggiamo la variabile d'ambiente FLASK_ENV per la modalità debug
+# Leggiamo la variabile d'ambiente FLASK_ENV per la modalità debug
 debug_mode = os.environ.get('FLASK_ENV') == 'development'
 
 
 # Avviamo il server sulla porta 5000
 if __name__ == "__main__":
     # nosec B104 - binding intenzionale per Docker
-    app.run(host="0.0.0.0", port=5000, debug= debug_mode)
+    app.run(host="0.0.0.0", port=5000, debug=debug_mode)
