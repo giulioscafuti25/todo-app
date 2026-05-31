@@ -1,7 +1,6 @@
 # Importiamo Flask e le funzioni necessarie
-import os
 from flask import Flask, render_template, request, redirect, url_for
-from pip._internal.commands import debug
+import os
 
 # Creiamo l'applicazione Flask
 app = Flask(__name__)
@@ -9,12 +8,10 @@ app = Flask(__name__)
 # Lista in memoria per salvare i task
 todos = []
 
-
 # Route principale: mostra la pagina con la lista dei task
 @app.route("/")
 def index():
     return render_template("index.html", todos=todos)
-
 
 # Route per aggiungere un nuovo task
 @app.route("/add", methods=["POST"])
@@ -25,7 +22,6 @@ def add():
     if todo:
         todos.append(todo)
     return redirect(url_for("index"))
-
 
 # Route per eliminare un task tramite il suo indice
 @app.route("/delete/<int:index>")
@@ -38,7 +34,6 @@ def delete(index):
 #Leggiamo la variabile d'ambiente FLASK_ENV per la modalità debug
 debug_mode = os.environ.get('FLASK_ENV') == 'development'
 
-
 # Avviamo il server sulla porta 5000
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000) #nosec B104 - binding intenzionale per Docker
+    app.run(host="0.0.0.0", port=5000, debug= debug_mode) #nosec B104 - binding intenzionale per Docker
