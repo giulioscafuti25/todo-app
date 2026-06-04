@@ -8,22 +8,24 @@
 </head>
 <body>
 
-    <h1> La mia Todo list </h1>
+    <h1>La mia Todo List</h1>
+
     <!-- Form per aggiungere un nuovo task -->
-    <form action="/add" method="post">
-        <input type="text" name="todo" placeholder="Scrivi una task...">
-        <button type="submit">"Aggiungi"</button>
+    <form action="/add" method="POST">
+        <input type="text" name="todo" placeholder="Scrivi un task...">
+        <button type="submit">Aggiungi</button>
     </form>
 
     <!-- Lista dei task -->
     <ul>
-        {% for todo  in todos %}
-        <li>
-            {{ todo }}
-            <-- Link per eliminare il task -->
-            <a href="/delete/{{loop.index0}}">Elimina</a>
-        </li>
+        {% for todo in todos %}
+            <li>
+                {{ todo['task'] }}
+                <!-- Link per eliminare il task tramite il suo id -->
+                <a href="/delete/{{ todo['id'] }}">Elimina</a>
+            </li>
         {% endfor %}
     </ul>
+
 </body>
 </html>
