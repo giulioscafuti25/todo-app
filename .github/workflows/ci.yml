@@ -27,17 +27,17 @@ jobs:
           python-version: '3.13'
 
       #Step 3 Installiamo le dipendenze
-      - name: Installa dipendenze
-        run: pip install -r requirements.txt
+      - name: Build - installa dipendenze
+        run: make build
 
       #Step 4 Analisi del condice con flask
-      - name: Flake8 - analisi stile
-        run: flake8 app.py
+      - name: Lint - analisi stile
+        run: make lint
 
       #Step 5 Analisi sicurezza con bandit
-      - name: Bandit - analisi sicurezza
-        run: bandit -r app.py
+      - name: Security - analisi sicurezza
+        run: make security
 
       #Step 6 Eseguiamo i test con pytest e misuriamo la copertura
-      - name: Pytest - test e copertura
-        run: pytest tests/test_app.py -v --cov=app --cov-report=term-missing
+      - name: Test - test e copertura
+        run: make test
